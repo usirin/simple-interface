@@ -71,3 +71,7 @@ BarInterface.toString()
 
     npm install simple-interface
 
+
+# licence
+
+MIT
