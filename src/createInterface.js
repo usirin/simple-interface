@@ -27,6 +27,16 @@ export default function createInterface(interfaceName, interfaceDefinition) {
     },
 
     /**
+     * Returns contract of this interface.
+     *
+     * @public
+     * @returns {object}
+     */
+    getContract() {
+      return interfaceDefinition
+    },
+
+    /**
      * String representation of Interface.
      *
      * @public
