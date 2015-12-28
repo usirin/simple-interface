@@ -2,7 +2,14 @@ import map from 'lodash.map'
 import isInstanceOf from './isInstanceOf'
 import isInterface from './isInterface'
 
-export default function createInterface(interfaceName, interfaceDefinition) {
+/**
+ * Creates an interface for given contract.
+ *
+ * @public
+ * @param {string} name - name of the interface
+ * @param {object} contract - interface contract
+ * @returns {object}
+ */
 export default function createInterface(name, contract) {
   return {
     /**
