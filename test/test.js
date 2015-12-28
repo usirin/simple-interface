@@ -128,4 +128,16 @@ describe('simple-interface', () => {
       expect(BarInterface.toString()).toBe('BarInterface { foo: FooInterface { title: String } }')
     })
   })
+
+  describe('#getContract', () => {
+    it('should return interface definition', () => {
+      let FooInterface = createInterface('FooInterface', {
+        title: String
+      })
+
+      expect(FooInterface.getContract()).toEqual({
+        title: String
+      })
+    })
+  })
 })

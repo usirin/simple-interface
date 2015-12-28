@@ -2,17 +2,25 @@ import map from 'lodash.map'
 import isInstanceOf from './isInstanceOf'
 import isInterface from './isInterface'
 
-export default function createInterface(interfaceName, interfaceDefinition) {
+/**
+ * Creates an interface for given contract.
+ *
+ * @public
+ * @param {string} name - name of the interface
+ * @param {object} contract - interface contract
+ * @returns {object}
+ */
+export default function createInterface(name, contract) {
   return {
     /**
-     * This interface's name.
+     * Name of the interface.
      */
-    name: interfaceName,
+    name: name,
 
     /**
      * Unique interface identifier. Mostly will be used for isInterface checks.
      */
-    __interfaceSymbol: Symbol(interfaceName),
+    __interfaceSymbol: Symbol(name),
 
     /**
      * Checks if given candidate satisfies this interface's contract.
@@ -23,7 +31,17 @@ export default function createInterface(interfaceName, interfaceDefinition) {
      * @returns {boolean}
      */
     isInstance(candidate) {
-      return isInstanceOf(interfaceDefinition, candidate)
+      return isInstanceOf(contract, candidate)
+    },
+
+    /**
+     * Returns contract of this interface.
+     *
+     * @public
+     * @returns {object}
+     */
+    getContract() {
+      return contract
     },
 
     /**
@@ -33,7 +51,7 @@ export default function createInterface(interfaceName, interfaceDefinition) {
      * @returns {string}
      */
     toString() {
-      return `${interfaceName} ${definitionToString(interfaceDefinition)}`
+      return `${name} ${contractToString(contract)}`
     }
   }
 }
@@ -42,11 +60,11 @@ export default function createInterface(interfaceName, interfaceDefinition) {
  * Return string representation of given definition.
  *
  * @public
- * @param {object} interfaceDefinition
+ * @param {object} contract
  * @returns {string}
  */
-function definitionToString(interfaceDefinition) {
-  let stringified = map(interfaceDefinition, (value, key) => {
+function contractToString(contract) {
+  let stringified = map(contract, (value, key) => {
     if (isInterface(value)) {
       return `${key}: ${value.toString()}`
     }
