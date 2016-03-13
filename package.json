@@ -1,6 +1,6 @@
 {
   "name": "simple-interface",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An easy way to create simple interfaces",
   "main": "lib/index.js",
   "scripts": {

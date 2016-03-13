@@ -84,6 +84,13 @@ describe('simple-interface', () => {
   })
 
   describe('#isInstanceOf', () => {
+    it('should return false if given candidate does not exist', () => {
+      let def = { foo: String }
+
+      expect(isInstanceOf(def, undefined)).toBe(false)
+      expect(isInstanceOf(def, null)).toBe(false)
+    })
+
     it('should check if a candate satisfies given interface', () => {
       let postInterfaceDefinition = {
         title: String,
