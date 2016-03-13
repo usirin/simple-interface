@@ -12,6 +12,12 @@ import isInterface from './isInterface'
  * @returns {boolean}
  */
 export default function isInstanceOf(interfaceDefinition, candidate, extractValue = defaultExtract) {
+
+  // don't even try to validate if candidate doesn't exist..
+  if (!candidate) {
+    return false
+  }
+
   return reduce(interfaceDefinition, (result, Type, property) => {
     return result && is(extractValue(candidate, property), Type)
   }, true)
